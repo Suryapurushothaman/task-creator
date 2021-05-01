@@ -2,7 +2,7 @@ const DateRow = ({ weekDays }) => {
     return (
         <div className='datepicker--weekdays'>
             {weekDays.map((weekday) => {
-                return <span className="day">{weekday}</span>
+                return <span key={weekday} className="day">{weekday}</span>
             })}
         </div>
     )
