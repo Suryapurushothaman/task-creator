@@ -1,0 +1,39 @@
+.forms{
+    &--wrapper{
+        padding: 2rem 1rem;
+        background: aliceblue;
+    }
+    &--description{
+        input{
+            width: 100%;
+        }
+    }
+    &--date-time{
+        display: flex;
+    }
+    &--date-time,&--description,&--assign-user{
+        margin-bottom: 15px;
+    }
+    &--label{
+        display: flex;
+    }
+    &--button-group{
+        display: flex;
+        justify-content: flex-end;
+        button{
+            outline: none;
+            border: none;
+            padding: 8px;
+            margin: 8px;
+        }
+    }
+    &--btn-submit{
+        background: rgb(91, 173, 91);
+    }
+    &--btn-cancel{
+        background: transparent;
+        :hover{
+            outline: 1px solid rgb(126, 157, 243);
+        }
+    }
+}
