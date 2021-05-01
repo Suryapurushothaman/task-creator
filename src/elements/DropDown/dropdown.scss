@@ -1,0 +1,26 @@
+.dropdown{
+    &--wrapper{
+        input{
+            width: 100%;
+        }
+    }
+    &--flyout{
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        background: white;
+        position: absolute;
+        max-width: 150px;
+        width: 100%;
+        max-height: 150px;
+        z-index: 100;
+        border-radius: 5px;
+        button{
+            outline: none;
+            background: transparent;
+            border: none;
+            padding: 5px;
+            border-bottom: 0.5px solid grey;
+        }
+    }
+}
