@@ -71,7 +71,8 @@ const Forms = ({ handleSubmit,handleCancel, data = {}, formsID, handleDelete = (
                 </div>
             </div>
             <div className='forms--assign-user'>
-                <label className='forms--label'>Assign User <span className='forms--dropdown-icon'><ArrowDropDownIcon /></span></label>
+                <label className='forms--label'>Assign User</label>
+                <span className='forms--dropdown-icon'><ArrowDropDownIcon /></span>
                 <DropDown values={users} handleSelectionCallback={handleUserCallback} defaultValue={data['assigned_user']}/>
             </div>
             <div className='forms--button-group'>
