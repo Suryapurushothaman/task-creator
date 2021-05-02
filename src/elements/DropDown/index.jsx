@@ -2,17 +2,18 @@ import { useState, useRef } from 'react'
 import { HandleOutsideClick } from '../../utility/handleOutsideClick'
 import './dropdown.scss'
 
-const TimePicker = ({values}) => {
+const DropDown = ({values,handleSelectionCallback,defaultValue}) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [label, setLabel] = useState('')
+  const [label, setLabel] = useState(defaultValue)
   const timeRef = useRef()
-  const onTimeSelection = (time) => {
-    setLabel(time)
+  const onSelection = (val) => {
+    setLabel(val)
+    handleSelectionCallback(val)
     setIsOpen(false)
   }
   HandleOutsideClick(timeRef, setIsOpen)
   return (
-    <div className="dropdown--wrapper" ref={timeRef}>
+    <div className="dropdown" ref={timeRef}>
       <input
         type="text"
         className="dropdown--input"
@@ -22,12 +23,12 @@ const TimePicker = ({values}) => {
         readOnly
       >
       </input>
-      {isOpen && <div className='dropdown--flyout'>{values.map((time => {
-        return <button key={time} onClick={() => onTimeSelection(time)}>{time}</button>
+      {isOpen && <div className='dropdown--flyout'>{values.map((val => {
+        return <button key={val} onClick={() => onSelection(val)}>{val}</button>
       }))}</div>}
 
 
     </div>
   )
 }
-export default TimePicker
+export default DropDown
