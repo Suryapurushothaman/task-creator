@@ -1,9 +1,8 @@
-import './App.css';
-import DatePicker from './elements/DatePicker'
+import TaskBar from './components/TaskBar';
 function App() {
   return (
     <div className="App">
-      <DatePicker />
+      <TaskBar />
     </div>
   );
 }
