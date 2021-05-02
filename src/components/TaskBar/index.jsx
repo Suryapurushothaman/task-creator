@@ -13,6 +13,7 @@ const TaskBar = (props) => {
         const data = { email: 'smithchery1@yahoo.com', password: '12345678' }
         getAuthToken(data)
         getUserId()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const handleSubmit = (data) => {
         setNewTask(data)

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import Header from './header'
 import DateRow from './dayRow'
 import {HandleOutsideClick} from '../../utility/handleOutsideClick'
-import {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,TODAY,getMonthLabel,getCalendarDates} from './dateUtils' 
+import {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,getMonthLabel,getCalendarDates} from './dateUtils' 
 import './date-picker.scss'
 
 const DatePicker = ({initialDate,handleDateCallback}) => {
@@ -23,12 +23,6 @@ const DatePicker = ({initialDate,handleDateCallback}) => {
     }
     const handleNextMonth = () => {
         setSelectedMonth(selectedMonth.add(1, "month"));   
-    }
-    const handleCurrentMonth = () => {
-        const nextMonth = dayjs(new Date(INITIAL_YEAR, INITIAL_MONTH - 1, 1));
-        setSelectedMonth(nextMonth);
-        setSelectedMonthDates(getCalendarDates(selectedMonth.format("YYYY"), selectedMonth.format("M")));
-        setSelectedMonthLabel(getMonthLabel(selectedMonth.format("YYYY"), selectedMonth.format("M")));
     }
     const handleDateSelection = (cd) => {
         setSelectedDate(dayjs(cd.date).format("MM/DD/YYYY"))

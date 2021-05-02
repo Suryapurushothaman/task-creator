@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 
 export const HandleOutsideClick =(ref,setIsOpen)=>{
-    const handleOutsideClick  = e => {
+    const handleClick  = e => {
         if (ref.current.contains(e.target)) {
             setIsOpen(true)
           // inside click
@@ -12,10 +12,11 @@ export const HandleOutsideClick =(ref,setIsOpen)=>{
       }
     useEffect(() => {
         // add when mounted
-        document.addEventListener("mousedown", handleOutsideClick);
+        document.addEventListener("mousedown", handleClick);
         // return function to be called when unmounted
         return () => {
-          document.removeEventListener("mousedown", handleOutsideClick);
+          document.removeEventListener("mousedown", handleClick);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 }
