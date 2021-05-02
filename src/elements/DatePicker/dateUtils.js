@@ -7,7 +7,7 @@ dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const TODAY = dayjs().format("YYYY-MM-DD");
+const TODAY = dayjs().format("MM/DD/YYYY");
 
 const INITIAL_YEAR = dayjs().format("YYYY");
 const INITIAL_MONTH = dayjs().format("M");
@@ -48,7 +48,8 @@ const createDaysForCurrentMonth=(year, month)=> {
         return {
             date: dayjs(`${year}-${month}-${index + 1}`).format("YYYY-MM-DD"),
             dayOfMonth: index + 1,
-            isCurrentMonth: true
+            isCurrentMonth: true,
+            idDateSelected: false
         };
     });
 }
@@ -79,7 +80,8 @@ const createDaysForPreviousMonth=(year, month) =>{
                 }`
             ).format("YYYY-MM-DD"),
             dayOfMonth: previousMonthLastMondayDayOfMonth + index,
-            isCurrentMonth: false
+            isCurrentMonth: false,
+            idDateSelected: false
         };
     });
 }
@@ -106,7 +108,8 @@ const createDaysForNextMonth=(year, month)=> {
                 `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
             ).format("YYYY-MM-DD"),
             dayOfMonth: index + 1,
-            isCurrentMonth: false
+            isCurrentMonth: false,
+            idDateSelected: false
         };
     });
 }

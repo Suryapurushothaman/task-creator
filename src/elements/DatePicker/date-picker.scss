@@ -4,7 +4,7 @@
 }
 	
 :root {
-	--c-theme-primary: #008FFD;
+	--c-theme-primary: #3b8bc9;
 	--c-theme-primary-accent: #CBE8FF;
 	--c-bg-primary: #D6DAE0;
 	--c-bg-secondary: #EAEBEC;
@@ -24,15 +24,6 @@ body {
 	color: var(--c-text-primary);
 }
 
-// button {
-// 	font: inherit;
-// 	cursor: pointer;
-// 	&:focus {
-// 		outline: 0;
-// 	}
-// }
-
-
 .datepicker {
 
 	&--flyout{
@@ -42,8 +33,23 @@ body {
 	box-shadow: 0 0 2px 0 rgba(#000, .2), 0 5px 10px 0 rgba(#000, .1);
 	padding: 1rem;
 	position: absolute;
-}
+	}
 
+	&--input{
+		width: 100%;
+		padding: 12px 0px 12px 35px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		font-size: 16px;
+	  }
+	&--icon{
+		position: absolute;
+		margin-left:5px;
+		margin-top: 18px;
+	}
 	&--month-selector {
 		display: flex;
 		justify-content: space-between;
@@ -91,12 +97,15 @@ body {
 			&:focus {
 				outline: 0;
 				color: var(--c-theme-primary);
-				border: 2px solid var(--c-theme-primary-accent);	
+				border: 1px solid var(--c-theme-primary-accent);	
 			}	
 		}
 		
 		.faded {
 			color: var(--c-text-secondary);
+		}
+		.selected{
+			border: 1px solid blue;
 		}
 	}
 	&--month-name {
