@@ -10,7 +10,7 @@ function reducers(state = initialState, action) {
   switch (type) {
     
     case GET_ALL_TASK:
-      return { ...state, tasks: payload };
+      return { ...state, tasks: [...payload] };
     case ADD_NEW_TASK:
       return { ...state, tasks: [payload, ...state.tasks] };
 

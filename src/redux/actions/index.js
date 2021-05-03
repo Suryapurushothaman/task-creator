@@ -22,6 +22,7 @@ export const getUserId = () => async () => {
   getUserIdService(`${BaseUrl}/user`)
     .then(res => {
       sessionStorage.setItem('user_id', res.results.id)
+      sessionStorage.setItem('user_name', res.results.first)
     })
     .catch(err => console.error(err));
 };

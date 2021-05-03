@@ -12,7 +12,6 @@ const Forms = ({ handleSubmit,handleCancel, data = {}, isNewTask=true, handleDel
     const {task_time,assigned_user,task_date,is_completed,time_zone,task_msg} = data
     const [formdata, setFormData] = useState({task_time,assigned_user,task_date,is_completed,time_zone,task_msg})
 
-    const users = ['User1','User2','User3']
 
     const handleTimeCallback = (time) => {
         setFormData({ ...formdata, task_time: toSeconds(time) })
@@ -48,7 +47,7 @@ const Forms = ({ handleSubmit,handleCancel, data = {}, isNewTask=true, handleDel
             <div className='forms--assign-user'>
                 <label className='forms--label'>Assign User</label>
                 <span className='forms--dropdown-icon'><ArrowDropDownIcon /></span>
-                <DropDown values={users} handleSelectionCallback={handleUserCallback} defaultValue={data['assigned_user']}/>
+                <DropDown values={[data['assigned_user']]} handleSelectionCallback={handleUserCallback} defaultValue={data['assigned_user']}/>
             </div>
             <div className='forms--button-group'>
                 <button type='button' className='forms--btn-cancel' onClick={()=>{handleCancel()}}>

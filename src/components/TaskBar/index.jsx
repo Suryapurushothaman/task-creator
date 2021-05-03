@@ -25,7 +25,7 @@ const TaskBar = (props) => {
         setShowForms(false)
     }
     const defaultData = {
-        assigned_user: 'USER',
+        assigned_user: sessionStorage.getItem('user_name'),
         task_date: TODAY,
         task_time: toSeconds(INITIAL_TIME),
         is_completed: 0,
