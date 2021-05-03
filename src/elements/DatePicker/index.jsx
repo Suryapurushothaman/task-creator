@@ -26,7 +26,7 @@ const DatePicker = ({initialDate,handleDateCallback}) => {
     }
     const handleDateSelection = (cd) => {
         setSelectedDate(dayjs(cd.date).format("MM/DD/YYYY"))
-        handleDateCallback(dayjs(cd.date).format("MM/DD/YYYY"))
+        handleDateCallback(cd.date)
         setIsOpen(false)
     }
     HandleOutsideClick(calendarRef,setIsOpen)

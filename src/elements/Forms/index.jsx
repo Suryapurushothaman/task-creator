@@ -1,44 +1,19 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import AccessAlarmsIcon from '@material-ui/icons/AccessAlarms';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import DatePicker from '../DatePicker'
 import DropDown from '../DropDown'
+import {toSeconds,secondsToHHMM,timeGenerator} from '../../utility/timeUtils'
 import './forms.scss'
 
-const Forms = ({ handleSubmit,handleCancel, data = {}, formsID, handleDelete = () => { } }) => {
-    const [formdata, setFormData] = useState(data)
-    const users = ['Ram', 'Dinesh', 'Kumar']
+const Forms = ({ handleSubmit,handleCancel, data = {}, isNewTask=true, handleDelete = () => { } }) => {
+    console.log(data,"@@@ Forms")
+    const {task_time,assigned_user,task_date,is_completed,time_zone,task_msg} = data
+    const [formdata, setFormData] = useState({task_time,assigned_user,task_date,is_completed,time_zone,task_msg})
 
-    const timeGenerator = (startTime = 0, interval = 30) => {
-        var x = interval; //minutes interval
-        var times = []; // time array
-        var tt = startTime; // start time
-        var ap = ['AM', 'PM']; // AM-PM
+    const users = ['User1','User2','User3']
 
-        //loop to increment the time and push results in array
-        for (var i = 0; tt < 24 * 60; i++) {
-            var hh = Math.floor(tt / 60); // getting hours of day in 0-24 format
-            var mm = (tt % 60); // getting minutes of the hour in 0-55 format
-            times[i] = ("0" + (hh % 12)).slice(-2) + ':' + ("0" + mm).slice(-2) + ap[Math.floor(hh / 12)]; // pushing data in array in [00:00 - 12:00 AM/PM format]
-            tt = tt + x;
-        }
-
-        return times;
-    }
-    const toSeconds = (t) => {
-        const isPM = t.indexOf('PM');
-        const time = isPM > -1 ? t.replace('PM', '') : t.replace('AM', '')
-        let timeArr = time.split(':')
-        timeArr[0] = timeArr[0] * 60 * 60;
-        timeArr[1] = timeArr[1] * 60
-        let seconds = timeArr[0] + timeArr[1]
-        if (isPM > -1) {
-            seconds = seconds + (12 * 60 * 60)
-        }
-        return seconds
-
-    }
     const handleTimeCallback = (time) => {
         setFormData({ ...formdata, task_time: toSeconds(time) })
     }
@@ -67,7 +42,7 @@ const Forms = ({ handleSubmit,handleCancel, data = {}, formsID, handleDelete = (
                     <span className="forms--timepicker-icon">
                         <AccessAlarmsIcon />
                     </span>
-                    <DropDown values={timeGenerator()} handleSelectionCallback={handleTimeCallback} defaultValue='Time'/>
+                    <DropDown values={timeGenerator()} handleSelectionCallback={handleTimeCallback} defaultValue={secondsToHHMM(data['task_time'])}/>
                 </div>
             </div>
             <div className='forms--assign-user'>
@@ -79,11 +54,11 @@ const Forms = ({ handleSubmit,handleCancel, data = {}, formsID, handleDelete = (
                 <button type='button' className='forms--btn-cancel' onClick={()=>{handleCancel()}}>
                     cancel
             </button>
-                <button type='button' className='forms--btn-submit' onClick={() => { handleSubmit(formdata, formsID) }}>
+                <button type='button' className='forms--btn-submit' onClick={() => { handleSubmit(formdata,data.id) }}>
                     Submit
             </button>
             </div>
-            {formsID !== '' && <button type='button' className='forms--btn-delete' onClick={() => { handleDelete(formsID) }}><DeleteIcon/></button>}
+            {!isNewTask  && <button type='button' className='forms--btn-delete' onClick={() => { handleDelete(data.id) }}><DeleteIcon/></button>}
         </form>
     )
 }

@@ -6,10 +6,11 @@ import Forms from '../../elements/Forms';
 
 import './taskmenu.scss'
 
-export const TaskMenu = ({ data, taskId, setUpdatedTask, setDeleteTask }) => {
+export const TaskMenu = ({ data, setUpdatedTask, setDeleteTask }) => {
 
     const [showForms, setShowForms] = useState(false)
     const handleSubmit = (data, id) => {
+        console.log(data, id,'handleSubmit')
         setUpdatedTask(data, id)
         setShowForms(false)
     }
@@ -17,6 +18,7 @@ export const TaskMenu = ({ data, taskId, setUpdatedTask, setDeleteTask }) => {
         setShowForms(false)
     }
     const handleDelete = (id) => {
+        setShowForms(false)
         setDeleteTask(id)
     }
     return (
@@ -36,7 +38,7 @@ export const TaskMenu = ({ data, taskId, setUpdatedTask, setDeleteTask }) => {
                     <button><DoneIcon/></button>
                 </div>
             </div>}
-            {showForms && <Forms data={data} handleSubmit={handleSubmit} formsID={taskId} handleDelete={handleDelete} handleCancel={handleCancel}/>}
+            {showForms && <Forms data={data} handleSubmit={handleSubmit} isNewTask={false} handleDelete={handleDelete} handleCancel={handleCancel}/>}
         </>
     )
 }

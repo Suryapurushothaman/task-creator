@@ -23,6 +23,17 @@ export const getUserIdService = async (url = '') => {
   return response.json();
 }
 
+export const getAllTaskService = async (url = '') => {
+  const response = await fetch(url, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      "Authorization": `Bearer ${access_token}`,
+      "Content-type": "application/json",
+      "Accept": "application/json",
+    }
+  });
+  return response.json();
+}
 export const addNewTaskService = async (url = '', data = {}) => {
   const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.

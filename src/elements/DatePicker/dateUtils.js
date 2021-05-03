@@ -7,7 +7,8 @@ dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const TODAY = dayjs().format("MM/DD/YYYY");
+const TODAY = dayjs().format("YYYY-MM-DD");
+const INITIAL_TIME = dayjs().format("HH:mm")
 
 const INITIAL_YEAR = dayjs().format("YYYY");
 const INITIAL_MONTH = dayjs().format("M");
@@ -114,4 +115,4 @@ const createDaysForNextMonth=(year, month)=> {
     });
 }
 
-export {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,TODAY,getMonthLabel,getNumberOfDaysInMonth,getCalendarDates,createDaysForCurrentMonth,createDaysForPreviousMonth,createDaysForNextMonth}
+export {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,TODAY,INITIAL_TIME,getMonthLabel,getNumberOfDaysInMonth,getCalendarDates,createDaysForCurrentMonth,createDaysForPreviousMonth,createDaysForNextMonth}
