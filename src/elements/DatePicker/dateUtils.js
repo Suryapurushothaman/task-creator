@@ -16,6 +16,9 @@ const INITIAL_MONTH = dayjs().format("M");
 const getWeekday=(date) =>{
     return dayjs(date).weekday();
 }
+const getDateObject=(date)=>{
+    return dayjs(date)
+}
 
 const getMonthLabel = (year = INITIAL_YEAR, month = INITIAL_MONTH) => {
     return (dayjs(
@@ -115,4 +118,4 @@ const createDaysForNextMonth=(year, month)=> {
     });
 }
 
-export {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,TODAY,INITIAL_TIME,getMonthLabel,getNumberOfDaysInMonth,getCalendarDates,createDaysForCurrentMonth,createDaysForPreviousMonth,createDaysForNextMonth}
+export {INITIAL_YEAR,INITIAL_MONTH,WEEKDAYS,TODAY,INITIAL_TIME,getDateObject,getMonthLabel,getNumberOfDaysInMonth,getCalendarDates,createDaysForCurrentMonth,createDaysForPreviousMonth,createDaysForNextMonth}

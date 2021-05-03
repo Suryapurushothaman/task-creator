@@ -3,6 +3,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DoneIcon from '@material-ui/icons/Done';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import Forms from '../../elements/Forms';
+import {getDateObject} from '../../elements/DatePicker/dateUtils'
 
 import './taskmenu.scss'
 
@@ -29,7 +30,7 @@ export const TaskMenu = ({ data, setUpdatedTask, setDeleteTask }) => {
                         {data['task_msg']}
                     </span>
                     <span className='taskmenu--date'>
-                        {data['task_date']}
+                        {getDateObject(data['task_date']).format("MM/DD/YYYY")}
                     </span>
                 </div>
                 <div className='taskmenu--actions'>
