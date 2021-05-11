@@ -11,11 +11,11 @@ export const getAccessTokenService = async (url = '', data = {}) => {
   });
   return response.json();
 }
-export const getUserIdService = async (url = '') => {
+export const getUserIdService = async (url = '',token) => {
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Authorization": `Bearer ${access_token}`,
+      "Authorization": `Bearer ${token}`,
       "Content-type": "application/json",
       "Accept": "application/json",
     }
@@ -23,11 +23,11 @@ export const getUserIdService = async (url = '') => {
   return response.json();
 }
 
-export const getAllTaskService = async (url = '') => {
+export const getAllTaskService = async (url = '',token) => {
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Authorization": `Bearer ${access_token}`,
+      "Authorization": `Bearer ${token}`,
       "Content-type": "application/json",
       "Accept": "application/json",
     }

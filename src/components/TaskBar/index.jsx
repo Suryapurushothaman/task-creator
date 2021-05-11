@@ -5,18 +5,18 @@ import Forms from '../../elements/Forms';
 import { TaskMenu } from '../TaskMenu'
 import {TODAY,INITIAL_TIME} from '../../elements/DatePicker/dateUtils'
 import {toSeconds} from '../../utility/timeUtils'
-import { getAuthToken,getAllTask, setNewTask,setUpdatedTask,setDeleteTask,getUserId } from '../../redux/actions'
+import {getAllTask, setNewTask,setUpdatedTask,setDeleteTask } from '../../redux/actions'
 import './taskbar.scss'
 const TaskBar = (props) => {
-    const { getAuthToken,getUserId,getAllTask, setNewTask, tasks,setUpdatedTask,setDeleteTask } = props
+    const {getAllTask, setNewTask, tasks,setUpdatedTask,setDeleteTask } = props
     const [showForms, setShowForms] = useState(false)
+    
     useEffect(() => {
         const data = { email: 'spicebluetest2@gmail.com', password: '12345678' }
-        getAuthToken(data)
-        getUserId()
-        getAllTask()
+        getAllTask(data)     
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    },[])
+
     const handleSubmit = (data) => {
         setNewTask(data)
         setShowForms(false)
@@ -50,11 +50,9 @@ const mapStateToProps = (state) => {
     return { ...state.data }
 }
 const mapDispatchToProps = {
-    getAuthToken, 
     setNewTask,
     setUpdatedTask,
     setDeleteTask,
-    getUserId,
     getAllTask
   }
 export default connect(mapStateToProps, mapDispatchToProps)(TaskBar)

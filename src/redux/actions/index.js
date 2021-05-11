@@ -5,7 +5,7 @@ import {
   DELETE_TASK
 } from "./actionTypes";
 
-import { getAccessTokenService, getUserIdService, getAllTaskService,addNewTaskService, updateTaskService, deleteTaskService } from "../services";
+import { getAccessTokenService, getUserIdService, getAllTaskService, addNewTaskService, updateTaskService, deleteTaskService } from "../services";
 
 const BaseUrl = 'https://stage.api.sloovi.com';
 
@@ -18,8 +18,8 @@ export const getAuthToken = (data) => async () => {
     .catch(err => console.error(err));
 };
 
-export const getUserId = () => async () => {
-  getUserIdService(`${BaseUrl}/user`)
+export const getUserId = () => async (data) => {
+  getUserIdService(`${BaseUrl}/user`, data)
     .then(res => {
       sessionStorage.setItem('user_id', res.results.id)
       sessionStorage.setItem('user_name', res.results.first)
@@ -27,13 +27,22 @@ export const getUserId = () => async () => {
     .catch(err => console.error(err));
 };
 
-export const getAllTask = () => async (dispatch) => {
-  getAllTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303`)
-    .then((res) => {
-      dispatch({
-        type: GET_ALL_TASK,
-        payload: res.results,
-      })
+export const getAllTask = (credentials) => async (dispatch) => {
+  getAccessTokenService(`${BaseUrl}/login`, credentials)
+    .then(res => {
+      sessionStorage.setItem('access_token', res.results.token)
+      getUserIdService(`${BaseUrl}/user`, res.results.token)
+        .then((res) => {
+          sessionStorage.setItem('user_id', res.results.id)
+          sessionStorage.setItem('user_name', res.results.first)
+          getAllTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303`,sessionStorage.getItem('access_token'))
+            .then((res) => {
+              dispatch({
+                type: GET_ALL_TASK,
+                payload: res.results,
+              })
+            })
+        })
     })
     .catch(err => console.error(err));
 };
