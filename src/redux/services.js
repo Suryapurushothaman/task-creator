@@ -1,4 +1,3 @@
-const access_token = sessionStorage.getItem('access_token')
 
 export const getAccessTokenService = async (url = '', data = {}) => {
   const response = await fetch(url, {
@@ -34,11 +33,11 @@ export const getAllTaskService = async (url = '',token) => {
   });
   return response.json();
 }
-export const addNewTaskService = async (url = '', data = {}) => {
+export const addNewTaskService = async (url = '', data = {},token) => {
   const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Authorization": `Bearer ${access_token}`,
+      "Authorization": `Bearer ${token}`,
       "Content-type": "application/json",
       "Accept": "application/json",
     },
@@ -46,11 +45,11 @@ export const addNewTaskService = async (url = '', data = {}) => {
   });
   return response.json();
 }
-export const updateTaskService = async (url = '', data = {}) => {
+export const updateTaskService = async (url = '', data = {},token) => {
   const response = await fetch(url, {
     method: 'PUT', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Authorization": `Bearer ${access_token}`,
+      "Authorization": `Bearer ${token}`,
       "Content-type": "application/json",
       "Accept": "application/json",
     },
@@ -58,11 +57,11 @@ export const updateTaskService = async (url = '', data = {}) => {
   });
   return response.json();
 }
-export const deleteTaskService = async (url = '') => {
+export const deleteTaskService = async (url = '',token) => {
   const response = await fetch(url, {
     method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Authorization": `Bearer ${access_token}`,
+      "Authorization": `Bearer ${token}`,
       "Content-type": "application/json",
       "Accept": "application/json",
     },

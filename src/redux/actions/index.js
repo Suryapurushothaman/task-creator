@@ -47,7 +47,7 @@ export const getAllTask = (credentials) => async (dispatch) => {
     .catch(err => console.error(err));
 };
 export const setNewTask = (data) => async (dispatch) => {
-  addNewTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303`, data)
+  addNewTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303`, data,sessionStorage.getItem('access_token'))
     .then((res) => {
       dispatch({
         type: ADD_NEW_TASK,
@@ -58,7 +58,7 @@ export const setNewTask = (data) => async (dispatch) => {
 };
 
 export const setUpdatedTask = (data, id) => async (dispatch) => {
-  updateTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303/${id}`, data)
+  updateTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303/${id}`, data,sessionStorage.getItem('access_token'))
     .then((res) => {
       dispatch({
         type: UPDATE_TASK,
@@ -69,7 +69,7 @@ export const setUpdatedTask = (data, id) => async (dispatch) => {
 };
 
 export const setDeleteTask = (id) => async (dispatch) => {
-  deleteTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303/${id}`)
+  deleteTaskService(`${BaseUrl}/task/lead_04412ba1d622466cab1f0ad941fcf303/${id}`,sessionStorage.getItem('access_token'))
     .then(() => {
       dispatch({
         type: DELETE_TASK,
